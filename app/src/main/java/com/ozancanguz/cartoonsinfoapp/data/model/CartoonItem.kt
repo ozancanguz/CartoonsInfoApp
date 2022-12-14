@@ -1,8 +1,11 @@
 package com.ozancanguz.cartoonsinfoapp.data.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class CartoonItem(
     @SerializedName("audio")
     val audio: String,
@@ -22,4 +25,4 @@ data class CartoonItem(
     val name: String,
     @SerializedName("rating")
     val rating: Double
-)
+):Parcelable

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/cartoonListFragment"
         android:name="com.ozancanguz.cartoonsinfoapp.ui.fragments.cartoonlist.CartoonListFragment"
-        android:label="fragment_cartoon_list"
+        android:label="List"
         tools:layout="@layout/fragment_cartoon_list" >
         <action
             android:id="@+id/action_cartoonListFragment_to_detailsFragment"
@@ -17,10 +17,13 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.ozancanguz.cartoonsinfoapp.ui.fragments.details.DetailsFragment"
-        android:label="fragment_details"
+        android:label="Details"
         tools:layout="@layout/fragment_details" >
         <action
             android:id="@+id/action_detailsFragment_to_cartoonListFragment"
             app:destination="@id/cartoonListFragment" />
+        <argument
+            android:name="currentCartoon"
+            app:argType="com.ozancanguz.cartoonsinfoapp.data.model.CartoonItem" />
     </fragment>
 </navigation>
