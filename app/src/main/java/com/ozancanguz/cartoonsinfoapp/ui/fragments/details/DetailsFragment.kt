@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.ozancanguz.cartoonsinfoapp.R
 import com.ozancanguz.cartoonsinfoapp.databinding.FragmentDetailsBinding
+import com.ozancanguz.cartoonsinfoapp.utils.Utils.Companion.loadImage
 
 
 class DetailsFragment : Fragment() {
@@ -15,7 +16,7 @@ class DetailsFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-
+        private val args:DetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,11 +26,19 @@ class DetailsFragment : Fragment() {
         val view = binding.root
 
 
+        updateui()
 
 
 
 
         return view
+    }
+
+    private fun updateui() {
+        binding.detailsImg.loadImage(args.currentCartoon.avatar)
+        binding.detailsnameTextView.text=args.currentCartoon.name
+        binding.detailsmessageTextview.text=args.currentCartoon.location
+        binding.designationTextview.text=args.currentCartoon.designation
     }
 
 
