@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ozancanguz.cartoonsinfoapp.R
 import com.ozancanguz.cartoonsinfoapp.adapter.CartoonAdapter
 import com.ozancanguz.cartoonsinfoapp.databinding.FragmentCartoonListBinding
+import com.ozancanguz.cartoonsinfoapp.utils.observeOnce
 import com.ozancanguz.cartoonsinfoapp.viewmodels.CartoonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -53,13 +54,12 @@ class CartoonListFragment : Fragment() {
 
         private fun listFromDatabase(){
           lifecycleScope.launch {
-            cartoonViewModel.listcartoons.observe(viewLifecycleOwner, Observer { database ->
+            cartoonViewModel.listcartoons.observeOnce(viewLifecycleOwner, Observer { database ->
                  if(database.isNotEmpty()){
                      Log.d("cartoonlistfragment", "database called")
                      cartoonAdapter.setData(database[0].cartoon)
                  }else{
                      // request from api
-
                      Log.d("cartoonlistfragment","request from api called")
                      observeLiveData()
                  }
@@ -81,7 +81,7 @@ class CartoonListFragment : Fragment() {
     // if there is no internet load from database first
     private fun loadDataFromCache() {
         lifecycleScope.launch {
-            cartoonViewModel.listcartoons.observe(viewLifecycleOwner) { database ->
+            cartoonViewModel.listcartoons.observeOnce(viewLifecycleOwner) { database ->
                 if (database.isNotEmpty()) {
                     cartoonAdapter.setData(database[0].cartoon)
                 }
