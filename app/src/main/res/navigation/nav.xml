@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/cartoonListFragment">
+
+    <fragment
+        android:id="@+id/cartoonListFragment"
+        android:name="com.ozancanguz.cartoonsinfoapp.ui.fragments.cartoonlist.CartoonListFragment"
+        android:label="fragment_cartoon_list"
+        tools:layout="@layout/fragment_cartoon_list" >
+        <action
+            android:id="@+id/action_cartoonListFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.ozancanguz.cartoonsinfoapp.ui.fragments.details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_cartoonListFragment"
+            app:destination="@id/cartoonListFragment" />
+    </fragment>
+</navigation>
