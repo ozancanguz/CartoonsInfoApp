@@ -7,7 +7,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 
-@AndroidEntryPoint
+
 class RemoteDataSource@Inject constructor(private val cartoonApi: CartoonApi) {
 
     suspend fun getCartoons():Response<Cartoon>{
