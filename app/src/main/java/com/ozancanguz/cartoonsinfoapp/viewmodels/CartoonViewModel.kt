@@ -11,9 +11,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class CartoonViewModel(private val repository:Repository,
+class CartoonViewModel @Inject constructor(private val repository:Repository,
 
                        application: Application):AndroidViewModel(application){
 
