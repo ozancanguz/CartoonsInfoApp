@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ozancanguz.cartoonsinfoapp.R
 import com.ozancanguz.cartoonsinfoapp.data.model.Cartoon
 import com.ozancanguz.cartoonsinfoapp.data.model.CartoonItem
+import com.ozancanguz.cartoonsinfoapp.utils.Utils.Companion.loadImage
 import kotlinx.android.synthetic.main.row_layout.view.*
 
 class CartoonAdapter:RecyclerView.Adapter<CartoonAdapter.CartoonViewHolder>() {
@@ -36,6 +37,8 @@ class CartoonAdapter:RecyclerView.Adapter<CartoonAdapter.CartoonViewHolder>() {
         holder.itemView.cartoon_location.text=currentCartoon.location
 
         // image load with glide
+        holder.itemView.cartoon_img.loadImage(currentCartoon.avatar)
+
 
     }
 

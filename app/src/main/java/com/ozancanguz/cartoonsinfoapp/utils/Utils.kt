@@ -7,14 +7,17 @@ import com.ozancanguz.cartoonsinfoapp.R
 
 class Utils {
 
-    fun ImageView.loadImage(uri: String?) {
-        val options = RequestOptions()
+    companion object{
+        fun ImageView.loadImage(uri: String?) {
+            val options = RequestOptions()
 
-            .error(R.mipmap.ic_launcher)
-        Glide.with(context)
-            .setDefaultRequestOptions(options)
-            .load(uri)
-            .into(this)
+                .error(R.mipmap.ic_launcher)
+            Glide.with(context)
+                .setDefaultRequestOptions(options)
+                .load(uri)
+                .into(this)
 
+        }
     }
+
 }
