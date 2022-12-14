@@ -30,6 +30,12 @@ class CartoonViewModel @Inject constructor(private val repository:Repository,
         }
     }
 
+    // offline caching fun
+    private fun offlineCacheCartoons(cartoon: Cartoon) {
+        val cartoonEntity = CartoonEntity(cartoon)
+        insertCartoon(cartoonEntity)
+    }
+
 
 
  //   -------------------------for retrofit------------------
@@ -43,6 +49,13 @@ class CartoonViewModel @Inject constructor(private val repository:Repository,
             val response=repository.remote.getCartoons()
             if(response.isSuccessful){
                 cartoonList.postValue(response.body())
+
+                val cartoon = cartoonList.value!!
+                if(cartoon != null) {
+                    offlineCacheCartoons(cartoon)
+                }
+
+
             }else{
                 Log.d("viewmodel","veri cekilemedi")
             }
