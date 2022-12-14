@@ -2,9 +2,9 @@ package com.ozancanguz.cartoonsinfoapp.viewmodels
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.ozancanguz.cartoonsinfoapp.data.Repository
+import com.ozancanguz.cartoonsinfoapp.data.db.CartoonEntity
 import com.ozancanguz.cartoonsinfoapp.data.model.Cartoon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -18,6 +18,21 @@ class CartoonViewModel @Inject constructor(private val repository:Repository,
 
                        application: Application):AndroidViewModel(application){
 
+    //   ------------------------for room---------------------
+    var listcartoons:LiveData<List<CartoonEntity>> = repository.local.listAllCartons().asLiveData()
+
+
+    // for room insert db fun
+
+    private fun insertCartoon(cartoonEntity: CartoonEntity){
+        viewModelScope.launch(Dispatchers.IO) {
+                  repository.local.insertCartoon(cartoonEntity)
+        }
+    }
+
+
+
+ //   -------------------------for retrofit------------------
 
        var cartoonList=MutableLiveData<Cartoon>()
        var job: Job?=null
@@ -33,6 +48,8 @@ class CartoonViewModel @Inject constructor(private val repository:Repository,
             }
         }
     }
+
+
 
 
 
