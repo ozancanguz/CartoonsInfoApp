@@ -3,10 +3,12 @@ package com.ozancanguz.cartoonsinfoapp.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ozancanguz.cartoonsinfoapp.R
 import com.ozancanguz.cartoonsinfoapp.data.model.Cartoon
 import com.ozancanguz.cartoonsinfoapp.data.model.CartoonItem
+import com.ozancanguz.cartoonsinfoapp.ui.fragments.cartoonlist.CartoonListFragmentDirections
 import com.ozancanguz.cartoonsinfoapp.utils.Utils.Companion.loadImage
 import kotlinx.android.synthetic.main.row_layout.view.*
 
@@ -38,6 +40,11 @@ class CartoonAdapter:RecyclerView.Adapter<CartoonAdapter.CartoonViewHolder>() {
 
         // image load with glide
         holder.itemView.cartoon_img.loadImage(currentCartoon.avatar)
+
+        holder.itemView.setOnClickListener {
+            val action=CartoonListFragmentDirections.actionCartoonListFragmentToDetailsFragment(currentCartoon)
+            holder.itemView.findNavController().navigate(action)
+        }
 
 
     }
